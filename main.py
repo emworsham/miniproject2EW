@@ -20,15 +20,47 @@ from pathlib import Path
 #(10/10 points) I will be checking out the master branch of your project. Please be sure to include a requirements.txt file which contains all the packages that need installed. You can create this fille with the output of pip freeze at the terminal prompt.
 #(20/20 points) There should be a README.md file in your project that explains what your project is, how to install the pip requirements, and how to execute the program. Please use the GitHub flavor of Markdown. Be thorough on the explanations.
 
+def bmiandoutcome():
+    bmidata = list(data['BMI'])
+    outcomedata = list(data['Outcome'])
+
+    # This plots the graph
+    plt.plot(outcomedata, bmidata)
+
+    # Set our labels for the graph
+    plt.xlabel("Diagnosis")
+    plt.ylabel("BMI")
+    plt.title("Correlation between High BMI and Positive Diabetic Diagnosis")
+
+    # Saves plot
+
+    savefile = "charts/bmi_outcome.png"
+    plt.savefig(savefile)
+
+    # Show the graph
+    plt.show()
+
+def bloodpressureoutcome():
+    bpdata = list(data['BloodPressure'])
+    outcomedata = list(data['Outcome'])
+
+    # This plots the graph
+    plt.plot(outcomedata, bpdata)
+
+    # Set our labels for the graph
+    plt.xlabel("Diagnosis")
+    plt.ylabel("Blood Pressure")
+    plt.title("Correlation between High Blood Pressure and Positive Diabetic Diagnosis")
+
+    # Saves plot
+
+    savefile = "charts/bp_outcome.png"
+    plt.savefig(savefile)
+
+    # Show the graph
+    plt.show()
+
 data = pd.read_csv('diabetes.csv')
-
-print(data['BMI'].describe())
-
-bmidata=list(data['BMI'])
-outcomedata=list(data['Outcome'])
-
-# This plots the graph
-plt.plot(outcomedata, bmidata)
 
 # Create our charts folders
 try:
@@ -36,11 +68,9 @@ try:
 except FileExistsError:
     pass
 
-# Saves plot
+bmiandoutcome()
 
-savefile = "charts/bmi_outcome.png"
-plt.savefig(savefile)
+bloodpressureoutcome()
 
-# Show the graph
-plt.show()
+
 
