@@ -22,11 +22,25 @@ from pathlib import Path
 
 data = pd.read_csv('diabetes.csv')
 
-print(data.head())
+print(data['BMI'].describe())
+
+bmidata=list(data['BMI'])
+outcomedata=list(data['Outcome'])
+
+# This plots the graph
+plt.plot(outcomedata, bmidata)
 
 # Create our charts folders
 try:
     Path("charts").mkdir()
 except FileExistsError:
     pass
+
+# Saves plot
+
+savefile = "charts/bmi_outcome.png"
+plt.savefig(savefile)
+
+# Show the graph
+plt.show()
 
