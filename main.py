@@ -4,6 +4,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 #(5/5 points) Initial comments with your name, class and project at the top of your .py file.
 #(5/5 points) Proper import of packages used.
@@ -22,4 +23,10 @@ import matplotlib.pyplot as plt
 data = pd.read_csv('diabetes.csv')
 
 print(data.head())
+
+# Create our charts folders
+try:
+    Path("charts").mkdir()
+except FileExistsError:
+    pass
 
