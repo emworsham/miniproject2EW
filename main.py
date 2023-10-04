@@ -60,6 +60,30 @@ def bloodpressureoutcome():
     # Show the graph
     plt.show()
 
+def obesebmiwithbp():
+    obese_bmi = list(data['BMI'][(data['BMI'] >= 30)])
+    obese_bmi_bp = list(data['BloodPressure'][(data['BMI'] >= 30)])
+
+    # This plots the graph
+    plt.scatter(obese_bmi, obese_bmi_bp)
+
+    #Using Log Scale to try and remove outlier skewing
+    plt.xscale('log')
+    plt.yscale('log')
+
+    # Set our labels for the graph
+    plt.xlabel("BMI for those with a BMI >= 30")
+    plt.ylabel("Blood Pressure for BMI >= 30")
+    plt.title("Blood Pressure of those with a BMI of 30 or More")
+
+    # Saves plot
+
+    savefile = "charts/bp_correlation_bmi.png"
+    plt.savefig(savefile)
+
+    # Show the graph
+    plt.show()
+
 data = pd.read_csv('diabetes.csv')
 
 # Create our charts folders
@@ -71,6 +95,11 @@ except FileExistsError:
 bmiandoutcome()
 
 bloodpressureoutcome()
+
+obesebmiwithbp()
+
+
+
 
 
 
